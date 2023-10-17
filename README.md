@@ -1,0 +1,1 @@
+im gonna try to make a self hosted website because im crazy lol
