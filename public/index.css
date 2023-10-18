@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(33, 25, 47);
+}
+
+p {
+    color: rgb(193, 92, 236);
+    font-family: Helvetica, sans-serif;
+    font-style: bold;
+    font-size: 10vw;
+    text-align: center;
+}
