@@ -1,16 +1,10 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 const path = require("path");
 const port = 2763;
 
-app.use((req, res, next) => {
-	// print information on the request
-	let ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-	console.log(`${ip} => ${res.statusCode} ${req.method} ${req.url}`);
-	// put the ngrok header on every response
-	res.set("ngrok-skip-browser-warning", "yes please!!");
-	next();
-});
+app.use(morgan("dev")); // log all requests using morgan
 
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
