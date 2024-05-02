@@ -51,11 +51,37 @@ body {
     font-weight: bolder;
 }
 
-.bigbutton:hover {
+#links {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
+}
+
+.linkbutton {
+    padding: 0.3em;
+    border-radius: calc(var(--desired-size) * 2);
+    border: none;
+    background-image: linear-gradient(to right, rgb(193, 92, 236), rgb(227, 41, 221));
+    color: rgb(247, 217, 249);
+    font-size: calc(var(--desired-size) * 4);
+    font-weight: bolder;
+    /* center the icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonicon {
+    width: 2em;
+}
+
+.bigbutton:hover, .linkbutton:hover {
     background-image: linear-gradient(to right, rgb(162, 41, 227), rgb(142, 92, 236));
 }
 
-.bigbutton:active {
+.bigbutton:active, .linkbutton:active {
     background-image: linear-gradient(to right, rgb(91, 41, 227), rgb(92, 176, 236));
 }
 
