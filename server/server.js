@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 
 // send anything in the public folder
 app.use(express.static(path.join(__dirname, "../public")));
+
 // finally, send 404s
 app.use((req, res) => {
 	res.status(404).send("404 Not Found");
