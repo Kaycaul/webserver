@@ -25,6 +25,7 @@ body {
     border-radius: 10%;
     border-color: rgb(227, 41, 221);
     border-width: calc(var(--desired-size) * 1);
+    background-color: rgb(114, 70, 110);
 }
 
 .bigtext {
@@ -51,6 +52,58 @@ body {
     font-weight: bolder;
 }
 
+#links {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    gap: 0.5em;
+}
+
+.linkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.round-button {
+    width: calc(var(--desired-size) * 20);
+    height: calc(var(--desired-size) * 20);
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#itch-button {
+    background-image: linear-gradient(30deg, rgb(238, 32, 128), #fa5c5c);
+}
+
+#discord-button {
+    background-image: linear-gradient(45deg, #5865F2, rgb(141, 65, 207));
+}
+
+#bluesky-button {
+    background-image: linear-gradient(160deg, rgb(77, 65, 213), rgb(65, 183, 207));
+}
+
+#tumblr-button {
+    background-image: linear-gradient(80deg, rgb(93, 70, 105), rgb(50, 26, 105));
+}
+
+.link-icon {
+    width: 65%;
+    fill: rgb(247, 217, 249);
+}
+
+#tumblr-icon {
+    transform: scale(0.93);
+}
+
+#bsky-icon {
+    transform: scale(0.94) translate(0, 4%);
+}
+
 .bigbutton:hover {
     background-image: linear-gradient(to right, rgb(162, 41, 227), rgb(142, 92, 236));
 }
@@ -69,4 +122,14 @@ h1.bigtext {
 
 h3.bigtext {
     font-size: calc(var(--desired-size) * 4);
+    margin: calc(var(--desired-size) * 1) 0;
+}
+
+h4 {
+    font-size: calc(var(--desired-size) * 3);
+    margin: calc(var(--desired-size) * 1) 0;
+    color: rgb(138, 129, 142);
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    text-align: center;
 }
