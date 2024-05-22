@@ -35,6 +35,13 @@ body {
     text-align: center;
 }
 
+#doeball-emoji {
+    width: calc(var(--desired-size) * 9);
+    padding-left: 0.1em;
+    display: inline;
+    transform: translate(0, 0.1em);
+}
+
 #buttons {
     text-align: center;
     font-size: large;
