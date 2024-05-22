@@ -1,5 +1,5 @@
 :root {
-    --desired-size: min(1vw, 7.5px);
+    --desired-size: min(1.37vw, 7.5px);
 }
 
 body {
@@ -33,6 +33,13 @@ body {
     font-family: Helvetica, sans-serif;
     font-style: bold;
     text-align: center;
+}
+
+#doeball-emoji {
+    width: calc(var(--desired-size) * 9);
+    padding-left: 0.1em;
+    display: inline;
+    transform: translate(0, 0.1em);
 }
 
 #buttons {
