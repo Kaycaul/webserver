@@ -1,3 +1,8 @@
+:root {
+    /* default text size */
+    --text-size: 0.9rem;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +14,10 @@
 
 body {
     background-color: rgb(33, 25, 47);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
 }
 
 img {
@@ -22,18 +31,14 @@ img {
 .card {
     background-color: rgba(97, 54, 118, 0.164);
     width: 100%;
-    /* width: min(90%, 30rem); */
     padding: 1rem;
-    /* margin: 15px; */
     margin: 0;
     border-top: 2px solid rgb(63, 45, 73);
-    margin-left: auto;
-    margin-right: auto;
-    /* border-radius: 40px; */
     border-radius: 0;
 }
 
-/* the top card should not have a border */
+/* title card */
+
 #titlecard {
     border: none;
 }
@@ -57,13 +62,13 @@ img {
 }
 
 h1.bigtext {
-    font-size: 3rem;
+    font-size: calc(var(--text-size) * 3);
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
 h3.bigtext {
-    font-size: 2rem;
+    font-size: calc(var(--text-size) * 2);
     font-weight: 500;
     margin: 0 0;
 }
@@ -75,11 +80,13 @@ h3.bigtext {
     transform: translate(0, 0.1em);
 }
 
+/* buttons card */
+
 #buttons {
     text-align: center;
     font-size: large;
     font-family: Helvetica, sans-serif;
-    background-color: #261f30;
+    background-color: rgba(70, 38, 86, 0.164);
 }
 
 .bigbutton {
@@ -93,15 +100,33 @@ h3.bigtext {
     font-weight: bolder;
 }
 
+.bigbutton:hover {
+    background-image: linear-gradient(to right, rgb(162, 41, 227), rgb(142, 92, 236));
+}
+
+.bigbutton:active {
+    background-image: linear-gradient(to right, rgb(91, 41, 227), rgb(92, 176, 236));
+}
+
 #contact {
     /* gap between the buttons */
     margin-bottom: 15px;
 }
 
+/* round buttons with links */
+
 #links {
+    display: grid;
+    justify-content: center;
+    /* push the footer down */
+    margin-bottom: 1rem; 
+}
+
+#links-container {
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
     gap: 1.5em 0;
+    width: 25rem;
 }
 
 .linkbox {
@@ -151,16 +176,8 @@ h3.bigtext {
     transform: scale(0.94) translate(0, 4%);
 }
 
-.bigbutton:hover {
-    background-image: linear-gradient(to right, rgb(162, 41, 227), rgb(142, 92, 236));
-}
-
-.bigbutton:active {
-    background-image: linear-gradient(to right, rgb(91, 41, 227), rgb(92, 176, 236));
-}
-
 h4 {
-    font-size: 1.1rem;
+    font-size: calc(var(--text-size) * 1.1);
     margin: 0.2rem;
     color: rgb(138, 129, 142);
     font-family: Helvetica, sans-serif;
@@ -168,12 +185,54 @@ h4 {
     text-align: center;
 }
 
+#footer {
+    font-family: Helvetica, sans-serif;
+    font-size: calc(var(--text-size) * 0.8);
+    color: rgba(138, 129, 142, 0.314);
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+#footer:hover {
+    text-decoration: underline;
+    color: rgba(171, 159, 177, 0.514);
+}
+
 /* for square-ish screens */
 @media screen and (min-width: 800px) {
+
+    :root {
+        --text-size: 1rem;
+    }
+
+    .card {
+        width: min(90%, 25rem);
+        margin: 0 0 1rem 0;
+        border-radius: 20px;
+        border-top: none;
+    }
+
+    #titlecard {
+        margin-top: 1rem;
+    }
     
+    #buttons {
+        background-color: rgba(97, 54, 118, 0.164);
+    }
+
+    /* #links {
+        padding-left: 10%;
+        padding-right: 10%;
+    } */
 }
 
 /* for wide screens */
 @media screen and (min-width: 1300px) {
+    :root {
+        --text-size: 1.2rem;
+    }
     
+    .card {
+        width: min(90%, 32rem);
+    }
 }
