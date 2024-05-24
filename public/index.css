@@ -1,42 +1,53 @@
-:root {
-    --desired-size: min(1.37vw, 7.5px);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 255, 217);
 }
 
 body {
     background-color: rgb(33, 25, 47);
 }
 
+img {
+    /* remove the dumb little space under images */
+    display: block;
+    /* shrink images to their container */
+    max-width: 100%;
+    height: auto;
+}
+
 .card {
     background-color: rgba(97, 54, 118, 0.164);
-    padding: calc(var(--desired-size) * 5);
-    width: calc(var(--desired-size) * 50);
-    margin: calc(var(--desired-size) * 5);
+    width: min(90%, 400px);
+    padding: 20px;
+    margin: 15px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 8%;
+    border-radius: 40px;
 }
 
 #profilepicture {
-    width: calc(var(--desired-size) * 20);
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
     display: block;
     border: solid;
-    border-radius: 10%;
+    border-radius: 20px;
     border-color: rgb(227, 41, 221);
-    border-width: calc(var(--desired-size) * 1);
+    border-width: 7px;
     background-color: rgb(114, 70, 110);
 }
 
 .bigtext {
     color: rgb(193, 92, 236);
-    font-family: Helvetica, sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-style: bold;
     text-align: center;
 }
 
 #doeball-emoji {
-    width: calc(var(--desired-size) * 9);
+    width: 1em;
     padding-left: 0.1em;
     display: inline;
     transform: translate(0, 0.1em);
@@ -51,12 +62,16 @@ body {
 .bigbutton {
     padding: 1em;
     width: 100%;
-    border-radius: calc(var(--desired-size) * 2);
+    border-radius: 20px;
     border: none;
     background-image: linear-gradient(to right, rgb(193, 92, 236), rgb(227, 41, 221));
     color: rgb(247, 217, 249);
-    font-size: calc(var(--desired-size) * 4);
+    font-size: 16pt;
     font-weight: bolder;
+}
+
+#contact {
+    margin-bottom: 15px;
 }
 
 #links {
@@ -73,8 +88,8 @@ body {
 }
 
 .round-button {
-    width: calc(var(--desired-size) * 20);
-    height: calc(var(--desired-size) * 20);
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background-color: black;
     display: flex;
@@ -119,17 +134,13 @@ body {
     background-image: linear-gradient(to right, rgb(91, 41, 227), rgb(92, 176, 236));
 }
 
-#contact {
-    margin-bottom: calc(var(--desired-size) * 2);
-}
-
 h1.bigtext {
-    font-size: calc(var(--desired-size) * 8);
+    font-size: 65px;
 }
 
 h3.bigtext {
-    font-size: calc(var(--desired-size) * 4);
-    margin: calc(var(--desired-size) * 1) 0;
+    font-size: 40px;
+    margin: 0 0;
 }
 
 h4 {
@@ -139,4 +150,14 @@ h4 {
     font-family: Helvetica, sans-serif;
     font-weight: 400;
     text-align: center;
+}
+
+/* for square-ish screens */
+@media screen and (min-width: 800px) {
+    
+}
+
+/* for wide screens */
+@media screen and (min-width: 1300px) {
+    
 }
