@@ -54,6 +54,14 @@ img {
     background-color: rgb(114, 70, 110);
 }
 
+#boop-counter {
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-size: calc(var(--text-size) * 0.8);
+    color: rgba(138, 129, 142, 0.424);
+    text-decoration: none;
+}
+
 .bigtext {
     color: rgb(193, 92, 236);
     font-family: "Helvetica", sans-serif;
