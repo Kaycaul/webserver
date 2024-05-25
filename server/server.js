@@ -6,7 +6,7 @@ const path = require("path");
 const port = 2763;
 
 // connect to database
-const client = new mongodb.MongoClient("mongodb://localhost:27017");
+const client = new mongodb.MongoClient("mongodb://127.0.0.1:27017");
 const db = client.db("website");
 const miscCollection = db.collection("misc");
 

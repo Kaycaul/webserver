@@ -7,9 +7,12 @@ async function main() {
     try {
         // connect
         console.log("connecting to database...");
-        client = new mongodb.MongoClient("mongodb://localhost:27017");
+        client = new mongodb.MongoClient("mongodb://127.0.0.1:27017");
+	console.log(client);
         const db = client.db("website");
+	console.log(db);
         const misc = db.collection("misc");
+	console.log(misc);
         console.log("connected");
         // delete everything
         await misc.deleteMany();
