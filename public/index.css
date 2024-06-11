@@ -52,6 +52,14 @@ img {
     border-color: rgb(227, 41, 221);
     border-width: 7px;
     background-color: rgb(114, 70, 110);
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+[hidden] {
+    display: none !important;
 }
 
 #boop-counter {
@@ -60,6 +68,28 @@ img {
     font-size: calc(var(--text-size) * 0.8);
     color: rgba(138, 129, 142, 0.424);
     text-decoration: none;
+    animation: slideBoopsDown 350ms forwards;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes slideBoopsDown {
+    0% {
+        transform: translate(0, -3em);
+        height: 0;
+    }
+
+    80% {
+        transform: translate(0, 0.2em);
+        height: 2.4em;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        height: 2em;
+    }
 }
 
 .bigtext {
@@ -127,7 +157,7 @@ h3.bigtext {
     display: grid;
     justify-content: center;
     /* push the footer down */
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
 }
 
 #links-container {
@@ -223,7 +253,7 @@ h4 {
     #titlecard {
         margin-top: 1rem;
     }
-    
+
     #buttons {
         background-color: rgba(97, 54, 118, 0.164);
     }
@@ -239,7 +269,7 @@ h4 {
     :root {
         --text-size: 1.2rem;
     }
-    
+
     .card {
         width: min(90%, 32rem);
     }
