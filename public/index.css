@@ -211,6 +211,13 @@ h3.bigtext {
     align-items: center;
     justify-content: center;
     margin: 0.3rem;
+    transition: all 200ms;
+}
+
+.round-button:focus, .round-button:hover {
+    border-radius: 30%;
+    box-shadow: 0 0 30px rgba(180, 130, 167, 0.166);
+    transform: scale(1.05);
 }
 
 #itch-button {
