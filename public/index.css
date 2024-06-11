@@ -58,6 +58,34 @@ img {
     z-index: 1;
 }
 
+#profilepicture:hover {
+    animation: wiggle 1s infinite;
+    transform-origin: 50% 50%;
+}
+
+#profilepicture:active {
+    transform: translate(0, 5%) scale(1.2, 0.9) !important;
+    animation: none;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0) scale(1, 1);
+    }
+
+    25% {
+        transform: translate(0, 2px) rotate(0.5deg) scale(1.03, 0.99)
+    }
+
+    50% {
+        transform: rotate(0) scale(1, 1);
+    }
+
+    75% {
+        transform: translate(0, 2px) rotate(-0.5deg) scale(1.03, 0.99)
+    }
+}
+
 [hidden] {
     display: none !important;
 }
