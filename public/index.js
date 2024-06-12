@@ -12,8 +12,13 @@ function removeClass(id, className) {
 
 // deferred script
 element("contact-button").addEventListener("click", contact);
-element("comms").addEventListener("click", comms);
+element("comms-button").addEventListener("click", comms);
 element("profilepicture").addEventListener("click", boop);
+// find all back buttons and add event listener
+let backButtons = document.getElementsByClassName("back-button");
+for (let i = 0; i < backButtons.length; i++) {
+    backButtons[i].addEventListener("click", buttons);
+}
 
 let boopCount = 0;
 
@@ -45,11 +50,23 @@ function boop() {
     xhttp2.send();
 }
 
+buttons();
+
+function buttons() {
+    element("main").style.height = element("buttons").offsetHeight + "px";
+    element("contact").style.transform = "translateX(-100vw) scaleY(0)";
+    element("buttons").style.transform = "translateX(0) scaleY(1)";
+    element("comms").style.transform = "translateX(100vw) scaleY(0)";
+}
 
 function contact() {
-    addClass("buttons", "slide-right");
+    element("main").style.height = element("contact").offsetHeight + "px";
+    element("contact").style.transform = "translateX(0) scaleY(1)";
+    element("buttons").style.transform = "translateX(100vw) scaleY(0)";
 }
 
 function comms() {
-    addClass("buttons", "slide-left");
+    element("main").style.height = element("comms").offsetHeight + "px";
+    element("comms").style.transform = "translateX(0) scaleY(1)";
+    element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
 }

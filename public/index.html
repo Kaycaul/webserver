@@ -22,17 +22,35 @@
     <div class="card" id="titlecard">
         <img id="profilepicture" src="happydoeball.png" alt="smiling doeball :3" title="Boop!">
         <p id="boop-counter" hidden>Boops: 0</p>
-        <h1 class="bigtext">Doeball!!<img id="doeball-emoji" src="doemoji.png"></h1>
+        <h1 class="bigtext" id="title">Doeball!!<img id="doeball-emoji" src="doemoji.png"></h1>
         <h3 class="bigtext">Artist & Game Developer :3</h3>
     </div>
-    <div class="card" id="buttons">
-        <button class="bigbutton" id="contact-button">Say hi!!</button>
-        <br>
-        <button class="bigbutton" id="comms">Comms (give me money)</button>
-    </div>
-    <div class="card" id="contact">
-        <h1 class="bigtext">im doeball<img id="doeball-emoji" src="doemoji.png"></h1>
-    </div>
+    <main id="main">
+        <div class="card" id="buttons">
+            <button class="bigbutton" id="contact-button">Contact<img src="envelope-svgrepo-com.svg" alt="envelope" id="envelope-icon"></button>
+            <button class="bigbutton" id="comms-button">Art Commissions <img src="art-palette-svgrepo-com.svg" alt="art palette" id="palette-icon"> </button>
+        </div>
+        <div class="card" id="contact">
+            <h2 class="bigtext">Have something to tell me?</h2>
+            <p>Add me on Discord! The fastest way to reach me is @doeball <img src="bl.png" alt="bleh silly cat" class="emote"></p>
+            <p>You can also dm me on any of the socials listed below, or email me at <a class="email" href="mailto:doughcatball@gmail.com">doughcatball@gmail.com</a>! I'm always happy to meet new people<img src="boing.png" alt="boing!!" class="emote"></p>
+            <button class="bigbutton back-button">Back <img src="back-arrow-direction-down-right-left-up-2-svgrepo-com.svg" alt="back icon" class="back" id="contact-back"></button>
+        </div>
+        <div class="card" id="comms">
+            <button class="bigbutton back-button">Back <img src="back-arrow-direction-down-right-left-up-2-svgrepo-com.svg" alt="back icon" class="back"></button>
+            <h2 class="bigtext">Want some art?</h2>
+            <p>I am often busy, but I can draw your characters or make a reference sheet for you!</p>
+            <p>(I plan on making another page to showcase all my art and process commissions automatically, but for now, here are some examples)</p>
+            <h3 class="bigtext">Headshot/Icon (10 USD)</h3>
+            <div class="example-art" alt="headshot example" id="headshot"></div>
+            <h3 class="bigtext">Halfbody (20 USD)</h3>
+            <div class="example-art" alt="Halfbody art example" id="halfbody"></div>
+            <h3 class="bigtext">Fullbody (30 USD)</h3>
+            <div class="example-art" alt="fullbody art example" id="fullbody"></div>
+            <p>With any order over 45 USD, you get a bonus free icon!</p>
+            <button class="bigbutton back-button">Back <img src="back-arrow-direction-down-right-left-up-2-svgrepo-com.svg" alt="back icon" class="back"></button>
+        </div>
+    </main>
     <div class="card" id="links">
         <div id="links-container">
             <div class="linkbox" id="itch">
@@ -44,7 +62,7 @@
                             color="#000" fill="#fff" />
                     </svg>
                 </a>
-                <h4>Play my games!</h4>
+                <p>Play my games!</p>
             </div>
             <div class="linkbox" id="discord">
                 <h3 class="bigtext">Discord</h3>
@@ -54,7 +72,7 @@
                             d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
                     </svg>
                 </a>
-                <h4>Join my server :3</h4>
+                <p>Join my server :3</p>
             </div>
             <div class="linkbox" id="bluesky">
                 <h3 class="bigtext">Bluesky</h3>
@@ -65,7 +83,7 @@
                         </path>
                     </svg>
                 </a>
-                <h4>I post art here</h4>
+                <p>I post art here</p>
             </div>
             <div class="linkbox" id="tumblr">
                 <h3 class="bigtext">Tumblr</h3>
@@ -80,7 +98,7 @@
                         </g>
                     </svg>
                 </a>
-                <h4>And here too</h4>
+                <p>And here too</p>
             </div>
         </div>
     </div>
