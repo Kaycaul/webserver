@@ -158,20 +158,25 @@ h3.bigtext {
 .bigbutton {
     padding: 1em;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 18px;
     border: none;
-    background-image: linear-gradient(to right, rgb(193, 92, 236), rgb(227, 41, 221));
+    background-image: linear-gradient(to left, rgb(91, 41, 227), rgb(73, 95, 219), rgb(227, 41, 221), rgb(164, 92, 236));
     color: rgb(247, 217, 249);
     font-size: 1.3rem;
     font-weight: bolder;
+    transition: all 400ms;
+    background-size: 300%;
+    background-position: 0 0;
 }
 
-.bigbutton:hover {
-    background-image: linear-gradient(to right, rgb(162, 41, 227), rgb(142, 92, 236));
+.bigbutton:hover, .bigbutton:focus {
+    transform: scale(1.02);
+    background-position: 50% 0;
+    border-radius: 20px;
 }
 
 .bigbutton:active {
-    background-image: linear-gradient(to right, rgb(91, 41, 227), rgb(92, 176, 236));
+    background-position: 100% 0;
 }
 
 #contact {
@@ -214,7 +219,8 @@ h3.bigtext {
     transition: all 200ms;
 }
 
-.round-button:focus, .round-button:hover {
+.round-button:focus,
+.round-button:hover {
     border-radius: 30%;
     box-shadow: 0 0 30px rgba(180, 130, 167, 0.166);
     transform: scale(1.05);
@@ -252,7 +258,7 @@ h3.bigtext {
 h4 {
     font-size: calc(var(--text-size) * 1.1);
     margin: 0.2rem;
-    color: rgb(138, 129, 142);
+    color: rgb(172, 160, 177);
     font-family: Helvetica, sans-serif;
     font-weight: 100;
     text-align: center;
