@@ -148,11 +148,40 @@ h3.bigtext {
 
 /* buttons card */
 
-#buttons {
+#buttons, #contact {
     text-align: center;
     font-size: large;
     font-family: Helvetica, sans-serif;
     background-color: rgba(70, 38, 86, 0.164);
+    animation: 350ms forwards;
+}
+
+.reverse-animation {
+    animation-direction: reverse;
+}
+
+.slide-right {
+    animation-name: slide !important;
+    --slide-distance: 100vw;
+}
+
+.slide-left {
+    animation-name: slide !important;
+    --slide-distance: -100vw;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate(0, 0);
+        position: static;
+    }
+
+    100% {
+        transform: translate(var(--slide-distance), 0);
+        height: 0;
+        position: fixed;
+        left: var(--slide-distance);
+    }
 }
 
 .bigbutton {
@@ -164,12 +193,12 @@ h3.bigtext {
     color: rgb(247, 217, 249);
     font-size: 1.3rem;
     font-weight: bolder;
-    transition: all 400ms;
+    transition: all 280ms;
     background-size: 300%;
     background-position: 0 0;
 }
 
-.bigbutton:hover, .bigbutton:focus {
+.bigbutton:hover {
     transform: scale(1.02);
     background-position: 50% 0;
     border-radius: 20px;
@@ -179,7 +208,7 @@ h3.bigtext {
     background-position: 100% 0;
 }
 
-#contact {
+#contact-button {
     /* gap between the buttons */
     margin-bottom: 15px;
 }
@@ -219,7 +248,6 @@ h3.bigtext {
     transition: all 200ms;
 }
 
-.round-button:focus,
 .round-button:hover {
     border-radius: 30%;
     box-shadow: 0 0 30px rgba(180, 130, 167, 0.166);
