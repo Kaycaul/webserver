@@ -50,6 +50,8 @@ function boop() {
     xhttp2.send();
 }
 
+// do it quickly at the start to avoid crazy overlapping
+buttons();
 // defer this so that the height can be properly calculated
 window.onload = function () {
     buttons();
