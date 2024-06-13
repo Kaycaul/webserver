@@ -50,7 +50,10 @@ function boop() {
     xhttp2.send();
 }
 
-buttons();
+// defer this so that the height can be properly calculated
+window.onload = function () {
+    buttons();
+}
 
 function buttons() {
     element("main").style.height = element("buttons").offsetHeight + "px";
@@ -69,4 +72,15 @@ function comms() {
     element("main").style.height = element("comms").offsetHeight + "px";
     element("comms").style.transform = "translateX(0) scaleY(1)";
     element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
+}
+
+// gradient spotlight follows the mouse
+if (matchMedia('(pointer:fine)').matches) {
+    document.body.onpointermove = function (e) {
+        removeClass("glow", "topleft");
+        const { clientX, clientY } = e;
+        element("glow").style.transform = "translate(-100vw, -100vh)";
+        element("glow").style.top = `${clientY}px`;
+        element("glow").style.left = `${clientX}px`;
+    }
 }
