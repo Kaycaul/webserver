@@ -10,16 +10,6 @@ function removeClass(id, className) {
     element(id).classList.remove(className);
 }
 
-// deferred script
-element("contact-button").addEventListener("click", contact);
-element("comms-button").addEventListener("click", comms);
-element("profilepicture").addEventListener("click", boop);
-// find all back buttons and add event listener
-let backButtons = document.getElementsByClassName("back-button");
-for (let i = 0; i < backButtons.length; i++) {
-    backButtons[i].addEventListener("click", buttons);
-}
-
 let boopCount = 0;
 
 function boop() {
@@ -57,9 +47,20 @@ window.onload = function () {
     buttons();
 }
 
+element("contact-button").addEventListener("click", contact);
+element("comms-button").addEventListener("click", comms);
+element("gallery-button").addEventListener("click", gallery);
+element("profilepicture").addEventListener("click", boop);
+// find all back buttons and add event listener
+let backButtons = document.getElementsByClassName("back-button");
+for (let i = 0; i < backButtons.length; i++) {
+    backButtons[i].addEventListener("click", buttons);
+}
+
 function buttons() {
     element("main").style.height = element("buttons").offsetHeight + "px";
     element("contact").style.transform = "translateX(-100vw) scaleY(0)";
+    element("gallery").style.transform = "translateX(-100vw) scaleY(0)";
     element("buttons").style.transform = "translateX(0) scaleY(1)";
     element("comms").style.transform = "translateX(100vw) scaleY(0)";
 }
@@ -74,6 +75,12 @@ function comms() {
     element("main").style.height = element("comms").offsetHeight + "px";
     element("comms").style.transform = "translateX(0) scaleY(1)";
     element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
+}
+
+function gallery() {
+    element("main").style.height = element("gallery").offsetHeight + "px";
+    element("gallery").style.transform = "translateX(0) scaleY(1)";
+    element("buttons").style.transform = "translateX(100vw) scaleY(0)";
 }
 
 // gradient spotlight follows the mouse

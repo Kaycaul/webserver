@@ -17,8 +17,7 @@ body {
     /* edit with js */
     --glow-x: 50%;
     --glow-y: 50%;
-    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(37, 22, 61) 5%, transparent 50%);
-    background-repeat: no-repeat;
+    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(37, 22, 61) 5vw, transparent 50vw);
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -181,9 +180,7 @@ a.email {
     text-shadow: 0 0 5px rgba(193, 92, 236, 0.411)
 }
 
-#buttons,
-#contact,
-#comms {
+.sliding-card {
     text-align: center;
     font-size: large;
     font-family: Helvetica, sans-serif;
@@ -198,7 +195,7 @@ a.email {
     margin: 0;
 }
 
-#contact {
+#contact, #gallery {
     transform: translateX(-100vw)
 }
 
@@ -420,6 +417,10 @@ p {
         width: min(90%, 25rem);
         border-radius: 20px;
         border-top: none;
+    }
+
+    main .sliding-card {
+        width: 100%;
     }
 
     #titlecard {
