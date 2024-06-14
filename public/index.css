@@ -393,12 +393,40 @@ p {
     height: 200vh;
     background-image: radial-gradient(circle, rgb(33, 25, 47) 5%, transparent 30%);
     z-index: -1;
+    overflow-x: hidden;
 }
 
 /* removed by js to let the user move the background */
 .topleft {
     top: -50vh;
     left: -50vw;
+}
+
+/* header */
+/* (its at the bottom of the file because i added it after everything else) */
+header {
+    font-size: calc(var(--text-size) * 0.85);
+    width: 100%;
+    padding: 0.5em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#headerpfp {
+    height: 64px;
+}
+
+header nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#hamburger-icon {
+    width: 3em;
 }
 
 /* for square-ish screens */
