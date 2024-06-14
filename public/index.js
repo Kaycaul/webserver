@@ -78,11 +78,15 @@ function comms() {
 
 // gradient spotlight follows the mouse
 if (matchMedia('(pointer:fine)').matches) {
+    document.body.addEventListener("mouseleave", function () {
+        let body = document.body;
+        body.style.setProperty("--glow-x", "50%");
+        body.style.setProperty("--glow-y", "50%");
+    });
     document.body.onpointermove = function (e) {
-        removeClass("glow", "topleft");
-        const { clientX, clientY } = e;
-        element("glow").style.transform = "translate(-100vw, -100vh)";
-        element("glow").style.top = `${clientY}px`;
-        element("glow").style.left = `${clientX}px`;
+        let body = document.body;
+        let rect = body.getBoundingClientRect();
+        body.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
+        body.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
     }
 }

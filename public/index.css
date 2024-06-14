@@ -14,6 +14,11 @@
 
 body {
     background-color: rgb(25, 20, 44);
+    /* edit with js */
+    --glow-x: 50%;
+    --glow-y: 50%;
+    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(37, 22, 61) 5%, transparent 50%);
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -391,15 +396,8 @@ p {
     /* background image must be larger than the body so that it can move past it */
     width: 200vw;
     height: 200vh;
-    background-image: radial-gradient(circle, rgb(33, 25, 47) 5%, transparent 30%);
     z-index: -1;
     overflow-x: hidden;
-}
-
-/* removed by js to let the user move the background */
-.topleft {
-    top: -50vh;
-    left: -50vw;
 }
 
 /* header */
