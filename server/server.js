@@ -31,6 +31,10 @@ app.get("/games/task-manager", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/games/taskmanager.html"));
 });
 
+app.get("/games/cart-game", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/games/cartbuild/cartgame.html"));
+});
+
 // send public files
 app.use(express.static(path.join(__dirname, "../public"), {
 	// add headers for unity gzip
@@ -38,8 +42,11 @@ app.use(express.static(path.join(__dirname, "../public"), {
 		if (path.endsWith(".gz")) {
 			res.set("Content-Encoding", "gzip");
 		}
-		if (path.endsWith(".wasm.gz")) {
+		if (path.endsWith(".wasm.gz") || path.endsWith(".wasm")) {
 			res.set("Content-Type", "application/wasm");
+		}
+		if (path.endsWith(".pck.gz") || path.endsWith(".pck")) {
+			res.set("Content-Type", "application/octet-stream");
 		}
 	}
 }));
