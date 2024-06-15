@@ -47,6 +47,11 @@ app.put("/boops", async (req, res) => {
 
 // finally, send 404s
 app.use((req, res) => {
+	// send 404 page if they want html
+	if (req.accepts("html")) {
+		res.status(404).sendFile(path.join(__dirname, "../public/404.html"));
+		return;
+	}
 	res.status(404).send("404 Not Found");
 });
 
