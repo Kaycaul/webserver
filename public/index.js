@@ -47,9 +47,6 @@ window.onload = function () {
     buttons();
 }
 
-element("contact-button").addEventListener("click", contact);
-element("comms-button").addEventListener("click", comms);
-element("gallery-button").addEventListener("click", gallery);
 element("profilepicture").addEventListener("click", boop);
 // find all back buttons and add event listener
 let backButtons = document.getElementsByClassName("back-button");
@@ -57,12 +54,18 @@ for (let i = 0; i < backButtons.length; i++) {
     backButtons[i].addEventListener("click", buttons);
 }
 
+element("contact-button").addEventListener("click", contact);
+element("comms-button").addEventListener("click", comms);
+element("gallery-button").addEventListener("click", gallery);
+element("games-button").addEventListener("click", games);
+
 function buttons() {
     element("main").style.height = element("buttons").offsetHeight + "px";
     element("contact").style.transform = "translateX(-100vw) scaleY(0)";
     element("gallery").style.transform = "translateX(-100vw) scaleY(0)";
     element("buttons").style.transform = "translateX(0) scaleY(1)";
     element("comms").style.transform = "translateX(100vw) scaleY(0)";
+    element("games").style.transform = "translateX(100vw) scaleY(0)";
 }
 
 function contact() {
@@ -82,3 +85,14 @@ function gallery() {
     element("gallery").style.transform = "translateX(0) scaleY(1)";
     element("buttons").style.transform = "translateX(100vw) scaleY(0)";
 }
+
+function games() {
+    element("main").style.height = element("games").offsetHeight + "px";
+    element("games").style.transform = "translateX(0) scaleY(1)";
+    element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
+}
+
+// link to the games page
+element("games-link-button").addEventListener("click", function () {
+    window.location.href = "/games";
+});

@@ -199,7 +199,7 @@ p {
     padding-right: 0.5rem;
 }
 
-#comms {
+#comms, #games {
     transform: translateX(100vw)
 }
 
@@ -287,6 +287,12 @@ p {
     width: 1.3em;
     filter: drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
     transform: translateX(-0.12em);
+}
+
+.games-icon {
+    width: 1.4em;
+    filter: invert(1) drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
+    transform: translateX(-0.13em);
 }
 
 .back {
