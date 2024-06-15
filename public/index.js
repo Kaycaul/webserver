@@ -61,35 +61,39 @@ element("games-button").addEventListener("click", games);
 
 function buttons() {
     element("main").style.height = element("buttons").offsetHeight + "px";
-    element("contact").style.transform = "translateX(-100vw) scaleY(0)";
-    element("gallery").style.transform = "translateX(-100vw) scaleY(0)";
-    element("buttons").style.transform = "translateX(0) scaleY(1)";
-    element("comms").style.transform = "translateX(100vw) scaleY(0)";
-    element("games").style.transform = "translateX(100vw) scaleY(0)";
+    removeClass("buttons", "offscreen");
+    addClass("contact", "offscreen")
+    addClass("gallery", "offscreen")
+    addClass("comms", "offscreen")
+    addClass("games", "offscreen")
 }
 
 function contact() {
     element("main").style.height = element("contact").offsetHeight + "px";
-    element("contact").style.transform = "translateX(0) scaleY(1)";
-    element("buttons").style.transform = "translateX(100vw) scaleY(0)";
+    element("buttons").style.setProperty("--offscreen-position", "100vw");
+    addClass("buttons", "offscreen")
+    removeClass("contact", "offscreen")
 }
 
 function comms() {
     element("main").style.height = element("comms").offsetHeight + "px";
-    element("comms").style.transform = "translateX(0) scaleY(1)";
-    element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
+    element("buttons").style.setProperty("--offscreen-position", "-100vw");
+    addClass("buttons", "offscreen")
+    removeClass("comms", "offscreen")
 }
 
 function gallery() {
     element("main").style.height = element("gallery").offsetHeight + "px";
-    element("gallery").style.transform = "translateX(0) scaleY(1)";
-    element("buttons").style.transform = "translateX(100vw) scaleY(0)";
+    element("buttons").style.setProperty("--offscreen-position", "100vw");
+    addClass("buttons", "offscreen")
+    removeClass("gallery", "offscreen")
 }
 
 function games() {
     element("main").style.height = element("games").offsetHeight + "px";
-    element("games").style.transform = "translateX(0) scaleY(1)";
-    element("buttons").style.transform = "translateX(-100vw) scaleY(0)";
+    element("buttons").style.setProperty("--offscreen-position", "-100vw");
+    addClass("buttons", "offscreen")
+    removeClass("games", "offscreen")
 }
 
 // link to the games page

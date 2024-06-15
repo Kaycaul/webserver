@@ -189,9 +189,6 @@ a.email {
     margin: 0;
 }
 
-#contact, #gallery {
-    transform: translateX(-100vw)
-}
 
 p {
     line-height: 1.35em;
@@ -199,8 +196,16 @@ p {
     padding-right: 0.5rem;
 }
 
+#contact, #gallery {
+    --offscreen-position: -100vw;
+}
+
 #comms, #games {
-    transform: translateX(100vw)
+    --offscreen-position: 100vw;
+}
+
+.offscreen {
+    transform: translateX(var(--offscreen-position)) scaleY(0);
 }
 
 .example-art {
