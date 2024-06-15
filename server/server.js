@@ -18,6 +18,15 @@ app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
+// games
+app.get("/games", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/games/index.html"));
+});
+
+app.get("/games/sneaks-game", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/games/sneaks.html"));
+});
+
 // send anything in the public folder
 app.use(express.static(path.join(__dirname, "../public")));
 

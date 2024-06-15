@@ -65,9 +65,11 @@ p {
     transition: 300ms;
     border-radius: 5px;
     border: none;
+    position: relative;
 }
 
-.game-card-image-wrapper:hover {
+:is(.game-card-image-wrapper:hover,
+.game-card-image-wrapper:focus-within) .game-card-image {
     transform: scale(1.05);
     box-shadow: 0 0 12px 3px rgba(18, 3, 18, 0.337);
 }
@@ -77,7 +79,7 @@ p {
     filter: none;
 }
 
-.game-card-image:hover {
+:is(.game-card-image-wrapper:hover, .game-card-image-wrapper:focus-within) .game-card-image {
     transform: scale(1.1);
     filter: grayscale(30%) brightness(65%);
 }
@@ -94,7 +96,7 @@ p {
     transition: opacity 200ms;
 }
 
-.game-card-image-wrapper:hover .game-card-image-play {
+:is(.game-card-image-wrapper:hover, .game-card-image-wrapper:focus-within) .game-card-image-play {
     opacity: 1;
 }
 
