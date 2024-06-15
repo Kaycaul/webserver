@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    /* remove the dumb little space under images */
+    display: block;
+    /* shrink images to their container */
+    max-width: 100%;
+    height: auto;
+}

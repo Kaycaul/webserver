@@ -82,18 +82,3 @@ function gallery() {
     element("gallery").style.transform = "translateX(0) scaleY(1)";
     element("buttons").style.transform = "translateX(100vw) scaleY(0)";
 }
-
-// gradient spotlight follows the mouse
-if (matchMedia('(pointer:fine)').matches) {
-    document.body.addEventListener("mouseleave", function () {
-        let body = document.body;
-        body.style.setProperty("--glow-x", "50%");
-        body.style.setProperty("--glow-y", "50%");
-    });
-    document.body.onpointermove = function (e) {
-        let body = document.body;
-        let rect = body.getBoundingClientRect();
-        body.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
-        body.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
-    }
-}

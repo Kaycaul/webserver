@@ -1,0 +1,23 @@
+@property --glow-x {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --glow-y {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+.glow-js {
+    background-color: rgb(25, 20, 44);
+    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(37, 22, 61) 5vw, transparent 50vw);
+    background-attachment: fixed; /* glow will follow mouse on scroll */
+    min-height: 100vh;
+}
+
+.glow-js-transition {
+    /* incompatible with firefox, but still looks fine so whatever */
+    transition: --glow-x 500ms, --glow-y 500ms;
+}
