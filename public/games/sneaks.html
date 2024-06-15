@@ -12,16 +12,16 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Sneaks Game</title>
-  <link rel="stylesheet" href="./sneaks.css">
+  <title>sneaks Game</title>
+  <link rel="stylesheet" href="/public/games/sneaks.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="./sneakers.js" defer></script>
+  <script src="/public/games/sneakers.js" defer></script>
   <!-- glow background -->
-  <script src="../glow.js" defer></script>
-  <link rel="stylesheet" href="../glow.css">
+  <script src="/public/glow.js" defer></script>
+  <link rel="stylesheet" href="/public/glow.css">
   <!-- embed stuff -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Play Totally Normal Sneaks Befriending Simulator" />
+  <meta property="og:title" content="Play Totally Normal sneaks Befriending Simulator" />
   <meta property="og:description" content="Play the 2023 classic by Lenixtt and Doeball" />
   <meta property="og:url" content="https://meow.doeball.ca/games/sneaks.html" />
   <meta property="og:image" content="https://meow.doeball.ca/assets/sneakers.png" />
@@ -29,9 +29,9 @@
 </head>
 
 <body class="glow-js">
-  <img id="sneakers" src="../assets/sneakers.png" alt="smug picture of sneaks with a strong aura">
+  <img id="sneakers" src="/public/assets/sneakers.png" alt="smug picture of sneaks with a strong aura">
   <canvas id="unity-canvas" width=1000 height=700 style="background: #231F20"></canvas>
-  <script src="../sneaksbuild/build.loader.js"></script>
+  <script src="/public/games/sneaksbuild/build.loader.js"></script>
   <script>
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       // Mobile device style: fill the whole browser client area with the game canvas:
@@ -49,9 +49,9 @@
     }
 
     createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "../sneaksbuild/build.data.unityweb",
-      frameworkUrl: "../sneaksbuild/build.framework.js.unityweb",
-      codeUrl: "../sneaksbuild/build.wasm.unityweb",
+      dataUrl: "/public/games/sneaksbuild/build.data.unityweb",
+      frameworkUrl: "/public/games/sneaksbuild/build.framework.js.unityweb",
+      codeUrl: "/public/games/sneaksbuild/build.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Sneaks Game",
