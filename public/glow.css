@@ -10,9 +10,14 @@
     initial-value: 0px;
 }
 
+:root {
+    --glow-background-color: rgb(25, 20, 44);
+    --glow-foreground-color: rgb(37, 22, 61);
+}
+
 .glow-js {
-    background-color: rgb(25, 20, 44);
-    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(37, 22, 61) 5vw, transparent 50vw);
+    background-color: var(--glow-background-color);
+    background-image: radial-gradient(circle at var(--glow-x) var(--glow-y), var(--glow-foreground-color) 5vw, transparent 50vw);
     background-attachment: fixed; /* glow will follow mouse on scroll */
     min-height: 100vh;
 }
