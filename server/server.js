@@ -27,8 +27,22 @@ app.get("/games/sneaks-game", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/games/sneaks.html"));
 });
 
-// send anything in the public folder
-app.use(express.static(path.join(__dirname, "../public")));
+app.get("/games/task-manager", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/games/taskmanager.html"));
+});
+
+// send public files
+app.use(express.static(path.join(__dirname, "../public"), {
+	// add headers for unity gzip
+	setHeaders: function(res, path) {
+		if (path.endsWith(".gz")) {
+			res.set("Content-Encoding", "gzip");
+		}
+		if (path.endsWith(".wasm.gz")) {
+			res.set("Content-Type", "application/wasm");
+		}
+	}
+}));
 
 // get the number of boops
 app.get("/boops", async (req, res) => {
