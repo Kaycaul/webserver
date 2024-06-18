@@ -18,6 +18,11 @@ app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
+// minecraft page
+app.get("/minecraft", (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/minecraft.html"));
+});
+
 // games
 app.get("/games", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/games/index.html"));
