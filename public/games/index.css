@@ -53,6 +53,19 @@ p {
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+    animation: fade-in 650ms ease-out;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.65;
+        transform: translate(0, -2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .game-card-title {
@@ -112,6 +125,10 @@ p {
     background-image: repeating-linear-gradient(80deg, var(--stripe-one) 0%, var(--stripe-one) 4%, var(--stripe-two) 5%, var(--stripe-two) 9%, var(--stripe-one) 10%);
 }
 
+#cart-game-card .game-card-title {
+    font-size: calc(var(--text-size) * 0.9);
+}
+
 @media screen and (min-width: 540px) {
     :root {
         --text-size: 1.1rem;
@@ -126,6 +143,11 @@ p {
         grid-row: span 2;
         order: 1;
     }
+
+    #coming-soon-card {
+        order: 2;
+    }
+    
 }
 
 @media screen and (min-width: 800px) {

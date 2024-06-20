@@ -19,6 +19,7 @@ body {
     gap: 0;
     align-items: center;
     overflow-x: hidden;
+    animation: fade-in 650ms ease-out;
 }
 
 img {
@@ -41,6 +42,18 @@ img {
 .card,
 main {
     transition: all 350ms, height 350ms ease-in-out;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.65;
+        transform: translate(0, -2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* title card */
@@ -297,6 +310,12 @@ p {
     width: 1.4em;
     filter: invert(1) drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
     transform: translateX(-0.13em);
+}
+
+#cube-icon {
+    width: 1.5em;
+    filter: invert(1) drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
+    transform: translateX(-0.05em);
 }
 
 .back {
