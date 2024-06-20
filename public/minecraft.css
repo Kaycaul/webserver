@@ -6,10 +6,11 @@
 
 :root {
     --font-size: 1.5rem;
+    scroll-behavior: smooth;
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
 }
@@ -26,9 +27,13 @@ body {
     color: rgb(224, 216, 231);
 }
 
+body:last-child {
+    margin-bottom: 4em;
+}
+
 body::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -88,10 +93,16 @@ input[type="reset"] {
 }
 
 .card {
-    background-color: rgba(34, 30, 37, 0.409);
+    background-color: rgba(34, 30, 37, 0.613);
     padding: 0.5em;
     width: calc(100% - 1em);
     animation: fade-in 800ms ease-out;
+}
+
+.card,
+#map-frame,
+.screenshot {
+    border-radius: 7px;
 }
 
 @keyframes fade-in {
@@ -107,9 +118,36 @@ input[type="reset"] {
 }
 
 p {
-    font-size: var(--font-size);
+    font-size: calc(var(--font-size) * 0.8);
+    line-height: 1.3em;
+    margin-top: 1em;
+}
+
+em {
+    font-style: normal;
+    font-weight: bold;
+    color: rgb(231, 158, 255);
+}
+
+a {
+    color: rgb(134, 162, 255);
+}
+
+a:active {
+    color: rgb(178, 71, 255);
 }
 
 h1 {
+    margin-top: 0.5em;
     font-size: calc(var(--font-size) * 1.5);
+}
+
+#map-frame {
+    min-height: 70vh;
+    width: 100%;
+}
+
+#map-frame,
+.screenshot {
+    margin-top: 1em;
 }

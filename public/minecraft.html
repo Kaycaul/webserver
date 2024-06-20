@@ -15,9 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doeball's Minecraft Server</title>
     <link rel="stylesheet" href="minecraft.css">
-    <!-- background glow -->
-    <script src="glow.js" defer></script>
-    <link rel="stylesheet" href="glow.css">
     <!-- embed stuff -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Doeball's Minecraft Server" />
@@ -31,17 +28,48 @@
     <nav>
         <a href="/" id="header-pfp"><img src="assets/happydoeball.png" alt="smiling doeball pfp"></a>
         <div class="navbuttons">
-            <button>World Map</button>
-            <button>Screenshots</button>
+            <button onclick="window.location.href = '#map';" id="map-button">World Map</button>
+            <button onclick="window.location.href = '#screenshots';" id="screenshot-button">Screenshots</button>
         </div>
     </nav>
     <main class="card">
         <h1>Doeball's Minecraft Server</h1>
-        <p>Find information on my Minecraft server here!</p>
+        <p>I self-host this Minecraft server for anyone to play on! My goal with this server is to create a <em>small
+                and cozy</em> community, the type that I have found the most enjoyable from my experience. Although the
+            server runs some plugins, I do my best to avoid affecting any gameplay or mechanics and maintain the
+            <em>vanilla experience</em>.
+        </p>
+        <p>The server's twist is the highly restrictive worldborder, reducing the world to only a few chunks! This
+            forces players to find creative and sustainable solutions to their problems. This also forces all players to
+            live together in a small space, encouraging fun interaction! I expand the border slowly as more space is
+            needed, and I plan to <em>never reset</em> the world. Everything that happens on the server is history!</p>
+        <p>The server currently runs <em>Java 1.20.2</em>, and I update it when all required tools are updated (and when
+            I'm not busy). You can join at <em>meow.doeball.ca</em>! I'd love to see you online :3</p>
     </main>
-    <main class="card">
-        <img src="assets/minecraft/spawn.png" alt="a picture of spawn">
-    </main>
+    <div class="card" id="map">
+        <h1>World Map</h1>
+        <iframe id="map-frame" src="http://map.doeball.ca/?worldname=world&mapname=flat&zoom=4&x=-456&y=64&z=-87"
+            frameborder="0"></iframe>
+        <p>Drop a message in the prompt and we will see it on <a href="https://discord.gg/XqfPcGGXMz">Discord</a> and
+            in-game!</p>
+        <p>View the full map <a
+                href="http://map.doeball.ca/?worldname=world&mapname=flat&zoom=4&x=-456&y=64&z=-87">Here.</a></p>
+    </div>
+    <div class="card" id="screenshots">
+        <h1>Screenshots</h1>
+        <img class="screenshot" src="assets/minecraft/everyone.png" alt="group photo of many server members">
+        <img class="screenshot" src="assets/minecraft/spawn.png" alt="a picture of spawn">
+        <img class="screenshot" src="assets/minecraft/foggytower.png" alt="foggy wizard visible from spawn">
+        <img class="screenshot" src="assets/minecraft/nofferston.png"
+            alt="pixel art of nofferston that dominates the view around the village">
+        <img class="screenshot" src="assets/minecraft/spire.png"
+            alt="the deepslate spire poking out past the mountains">
+        <img class="screenshot" src="assets/minecraft/sunset.png" alt="sunset from near spawn">
+        <img class="screenshot" src="assets/minecraft/cherrygrove.png" alt="a section of the cherry grove">
+        <img class="screenshot" src="assets/minecraft/spruceborder.png" alt="view of the border">
+        <img class="screenshot" src="assets/minecraft/floodedshrine.png"
+            alt="one of many shrines on the server, flooded in the corner">
+    </div>
 </body>
 
 </html>
