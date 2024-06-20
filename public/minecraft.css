@@ -20,7 +20,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 0.5em;
+    gap: 1em;
     font-family: Helvetica, sans-serif;
     font-style: bold;
     text-align: center;
@@ -54,17 +54,18 @@ nav {
     height: calc(var(--font-size) * 2.9);
     width: 100%;
     background-color: rgba(34, 30, 37, 0.409);
-    padding: 0.3em;
-    gap: 0.3em;
+    padding: 0.5em;
+    gap: 0.5em;
 }
 
 .navbuttons {
+    font-size: calc(var(--font-size) * 0.9);
     height: 100%;
 }
 
 nav .navbuttons {
     display: flex;
-    gap: 0.3em;
+    gap: 0.5em;
 }
 
 #header-pfp {
@@ -94,8 +95,8 @@ input[type="reset"] {
 
 .card {
     background-color: rgba(34, 30, 37, 0.613);
-    padding: 0.5em;
-    width: calc(100% - 1em);
+    padding: 1em;
+    width: calc(100% - 2em);
     animation: fade-in 800ms ease-out;
 }
 
@@ -154,9 +155,20 @@ h1 {
 
 .screenshot {
     transition: all 300ms;
+    cursor: pointer;
 }
 
 .screenshot:hover {
     transform: scale(1.02);
     box-shadow: 0 0 5px rgba(19, 16, 25, 0.582);
+}
+
+@media screen and (min-width: 800px) {
+    :root {
+        --font-size: 1.8rem;
+    }
+
+    .card {
+        max-width: 1000px;
+    }
 }
