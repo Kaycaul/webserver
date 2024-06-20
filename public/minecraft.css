@@ -151,3 +151,12 @@ h1 {
 .screenshot {
     margin-top: 1em;
 }
+
+.screenshot {
+    transition: all 300ms;
+}
+
+.screenshot:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(19, 16, 25, 0.582);
+}
