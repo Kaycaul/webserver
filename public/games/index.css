@@ -24,6 +24,42 @@ body {
     align-items: center;
 }
 
+.bigbutton {
+    text-shadow: 0 0 5px rgba(24, 10, 69, 0.451);
+    padding: 1em;
+    width: 100%;
+    border-radius: 18px;
+    border: none;
+    background-image: linear-gradient(to left, rgb(91, 41, 227), rgb(73, 95, 219), rgb(227, 41, 221), rgb(164, 92, 236));
+    color: rgb(247, 217, 249);
+    font-size: 1.3rem;
+    font-weight: bolder;
+    transition: all 280ms;
+    background-size: 300%;
+    background-position: 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: min(calc(100vw - 2rem), 500px);
+    margin-top: 1rem;
+}
+
+.bigbutton:hover {
+    transform: scale(1.02);
+    background-position: 50% 0;
+    border-radius: 20px;
+}
+
+.bigbutton:active {
+    background-position: 100% 0;
+    transform: translateY(2px) scale(0.98);
+}
+
+.back {
+    width: 1.5em;
+    filter: drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
+}
+
 h1,
 h2,
 h3,
@@ -58,8 +94,8 @@ p {
 
 @keyframes fade-in {
     0% {
-        opacity: 0.65;
-        transform: translate(0, -2rem);
+        opacity: 0.5;
+        transform: translate(0, -1.5rem);
     }
 
     100% {
