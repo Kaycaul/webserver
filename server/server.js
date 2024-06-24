@@ -9,6 +9,7 @@ const port = 2763;
 const client = new mongodb.MongoClient("mongodb://127.0.0.1:27017");
 const db = client.db("website");
 const miscCollection = db.collection("misc");
+const artworksCollection = db.collection("artworks");
 
 // middleware to log all requests before doing anything
 app.use(morgan("dev"));
@@ -38,6 +39,31 @@ app.get("/games/task-manager", (req, res) => {
 
 app.get("/games/cart-game", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/games/cartbuild/cartgame.html"));
+});
+
+// gallery
+app.get("/gallery", async (req, res) => {
+	// html page
+	if (req.accepts("text/html")) {
+		res.sendFile(path.join(__dirname, "../public/gallery.html"));
+	} else if (req.accepts("application/json")) {
+		// get all artwork ids
+		let list = (await artworksCollection.find({}).toArray());
+		list = list.map(artwork => artwork._id.toString());
+		res.setHeader("Content-Type", "application/json");
+		res.send(list);
+	}
+});
+
+app.get("/gallery/:id", async (req, res) => {
+	let id = new mongodb.ObjectId(req.params.id);
+	let artworkjson = await artworksCollection.findOne({ "_id": id });
+	if (!artworkjson) {
+		res.status(404).send("Artwork not found");
+		return;
+	}
+	res.setHeader("Content-Type", "application/json");
+	res.send(artworkjson);
 });
 
 // send public files
