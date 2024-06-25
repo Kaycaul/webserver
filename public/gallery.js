@@ -59,18 +59,19 @@ function addArtworkElement(artwork, div) {
     let desc = document.createElement("div");
     desc.classList.add("desc");
     div.appendChild(desc);
+    // this next part is horrible im sorry i dont know how to add inline elements
     // artist
     let p = document.createElement("p");
-    p.textContent = `By ${artwork.artist}, Uploaded ${unixToDate(Date.parse(artwork.date))}`;
+    p.innerHTML = `By <a class="artist-link" href="/gallery?artist=${artwork.artist}">${artwork.artist}</a>, Uploaded ${unixToDate(Date.parse(artwork.date))}`
     desc.appendChild(p);
     // tags
     let tags = document.createElement("p");
     tags.classList.add("tags");
-    let text = `Tags: ${artwork.tags[0]}`;
+    let html = `Tags: <a class="tag-link" href="/gallery?tags=${artwork.tags[0]}">${artwork.tags[0]}</a>`;
     for (let i = 1; i < artwork.tags.length; i++) {
-        text += ", " + artwork.tags[i];
+        html += `, <a class="tag-link" href="/gallery?tags=${artwork.tags[i]}">${artwork.tags[i]}</a>`;
     }
-    tags.textContent = text;
+    tags.innerHTML = html;
     desc.appendChild(tags);
 }
 

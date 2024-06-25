@@ -93,6 +93,15 @@ p {
     color: var(--text-dark);
 }
 
+.desc a {
+    color: inherit;
+    filter: saturate(2) contrast(2);
+}
+
+.desc a:hover, .desc a:focus-within {
+    filter: saturate(5) contrast(5);
+}
+
 @media screen and (min-width: 600px) {
     :root {
         --font-size: 1rem;
