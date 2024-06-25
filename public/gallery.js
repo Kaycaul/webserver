@@ -1,18 +1,38 @@
 const main = document.querySelector("main");
 let artworkIDs = [];
 let currentArtwork = 0;
-// ajax all artwork ids
-let galleryIDsRequest = new XMLHttpRequest();
-galleryIDsRequest.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        let ids = JSON.parse(this.responseText);
-        artworkIDs = ids;
-        loadMore(9);
+let page = 0;
+let stopped = false;
+let waiting = false;
+
+// load the first 9
+requestMore(9);
+
+function requestMore(amount) {
+    // lock
+    waiting = true;
+    // ajax another page of artwork ids
+    let galleryIDsRequest = new XMLHttpRequest();
+    let pageQueryString = window.location.search ? "&" : "?";
+    pageQueryString += "page=" + page++;
+    galleryIDsRequest.open("GET", `gallery/${window.location.search}${pageQueryString}`, true);
+    galleryIDsRequest.setRequestHeader("Accept", "application/json");
+    galleryIDsRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let ids = JSON.parse(this.responseText);
+            // append to list
+            artworkIDs = artworkIDs.concat(ids);
+            loadMore(amount);
+        }
+        if (this.readyState == 4 && this.status == 404) {
+            // no more artwork
+            stopped = true;
+        }
+        // unlock
+        waiting = false;
     }
+    galleryIDsRequest.send();
 }
-galleryIDsRequest.open("GET", `gallery/${window.location.search}`, true);
-galleryIDsRequest.setRequestHeader("Accept", "application/json");
-galleryIDsRequest.send();
 
 function loadMore(amount) {
     let start = currentArtwork;
@@ -77,8 +97,9 @@ function addArtworkElement(artwork, div) {
 
 // load more on scroll
 window.onscroll = function () {
+    if (stopped || waiting) return;
     if (window.innerHeight + window.scrollY + 400 >= document.body.offsetHeight) {
-        loadMore(9);
+        requestMore(9);
     }
 }
 

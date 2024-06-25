@@ -57,7 +57,12 @@ app.get("/gallery", async (req, res) => {
 		if (req.query.page) page = parseInt(req.query.page);
 		if (!page || page < 0) page = 0;
 		// get all artwork ids
-		let list = (await artworksCollection.find(dbQuery).toArray());
+		let list = await artworksCollection.find(dbQuery).toArray();
+		// break if no results
+		if (list.length == 0 || page * pagesize > list.length) {
+			res.status(404).send("No artworks found");
+			return;
+		}
 		// sort by date
 		list = list.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 		list.reverse(); // newest first
