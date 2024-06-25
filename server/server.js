@@ -47,8 +47,13 @@ app.get("/gallery", async (req, res) => {
 	if (req.accepts("text/html")) {
 		res.sendFile(path.join(__dirname, "../public/gallery.html"));
 	} else if (req.accepts("application/json")) {
+		// parse query params
+		let dbQuery = {};
+		if (req.query.artist) dbQuery.artist = req.query.artist;
+		if (req.query.title) dbQuery.path = {$regex: `(\/.+)+\/.*${req.query.title}.*`, $options: "i"}; // magic fucking spell
+		if (req.query.tags) dbQuery.tags = {$all: req.query.tags.split(" ")};
 		// get all artwork ids
-		let list = (await artworksCollection.find({}).toArray());
+		let list = (await artworksCollection.find(dbQuery).toArray());
 		// sort by date
 		list = list.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
 		list.reverse(); // newest first

@@ -10,10 +10,9 @@ galleryIDsRequest.onreadystatechange = function () {
         loadMore(9);
     }
 }
-galleryIDsRequest.open("GET", "gallery", true);
+galleryIDsRequest.open("GET", `gallery/${window.location.search}`, true);
 galleryIDsRequest.setRequestHeader("Accept", "application/json");
 galleryIDsRequest.send();
-
 
 function loadMore(amount) {
     let start = currentArtwork;
@@ -38,7 +37,7 @@ function addArtwork(id) {
             addArtworkElement(artwork, div);
         }
     }
-    xhttp.open("GET", "gallery/" + id, true);
+    xhttp.open("GET", `/gallery/${id}`, true);
     xhttp.setRequestHeader("Accept", "application/json");
     xhttp.send();
 }
@@ -62,7 +61,7 @@ function addArtworkElement(artwork, div) {
     div.appendChild(desc);
     // artist
     let p = document.createElement("p");
-    p.textContent = `By ${artwork.artist}, ${unixToDate(Date.parse(artwork.date))}`;
+    p.textContent = `By ${artwork.artist}, Uploaded ${unixToDate(Date.parse(artwork.date))}`;
     desc.appendChild(p);
     // tags
     let tags = document.createElement("p");
