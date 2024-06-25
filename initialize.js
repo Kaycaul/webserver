@@ -22,12 +22,24 @@ async function main() {
         // clear artworks
         await artworks.deleteMany();
         console.log("artworks cleared");
-        // add a sample artwork for testing
+        // add sample artworks for testing
         await artworks.insertOne({
            path: "/assets/umbrela.png", 
            artist: "Lenixtt",
-           tags: ["sneaks", "sneaks-game"],
-           year: "2023"
+           tags: ["sneaks", "sneaks-game", "liquid-skies"],
+           date: new Date()
+        });
+        await artworks.insertOne({
+           path: "/assets/sneakers.png", 
+           artist: "Doeball",
+           tags: ["sneaks", "sneaks-game", "liquid-skies"],
+           date: new Date()
+        });
+        await artworks.insertOne({
+           path: "/assets/verity_with_9_trillion_effects.png", 
+           artist: "Doeball",
+           tags: ["verity", "liquid-skies"],
+           date: new Date()
         });
         console.log("artworks initialized");
     } finally {

@@ -49,6 +49,10 @@ app.get("/gallery", async (req, res) => {
 	} else if (req.accepts("application/json")) {
 		// get all artwork ids
 		let list = (await artworksCollection.find({}).toArray());
+		// sort by date
+		list = list.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+		list.reverse(); // newest first
+		// map to ids
 		list = list.map(artwork => artwork._id.toString());
 		res.setHeader("Content-Type", "application/json");
 		res.send(list);
@@ -58,10 +62,12 @@ app.get("/gallery", async (req, res) => {
 app.get("/gallery/:id", async (req, res) => {
 	let id = new mongodb.ObjectId(req.params.id);
 	let artworkjson = await artworksCollection.findOne({ "_id": id });
+	// remove the id
 	if (!artworkjson) {
 		res.status(404).send("Artwork not found");
 		return;
 	}
+	delete artworkjson._id;
 	res.setHeader("Content-Type", "application/json");
 	res.send(artworkjson);
 });

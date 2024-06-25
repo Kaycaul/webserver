@@ -25,12 +25,17 @@ function loadMore(amount) {
 }
 
 function addArtwork(id) {
+    // insert the card first, while we wait for the artwork object
+    let div = document.createElement("div");
+    div.classList.add("artwork-card");
+    main.appendChild(div);
     // ajax the artwork
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let artwork = JSON.parse(this.responseText);
-            addArtworkElement(artwork);
+            // add the details of the artwork object to the card
+            addArtworkElement(artwork, div);
         }
     }
     xhttp.open("GET", "gallery/" + id, true);
@@ -38,28 +43,30 @@ function addArtwork(id) {
     xhttp.send();
 }
 
-function addArtworkElement(artwork) {
-    let div = document.createElement("div");
-    div.classList.add("artwork-card");
-    main.appendChild(div);
+function addArtworkElement(artwork, div) {
     // title
     let h2 = document.createElement("h2");
     let title = artwork.path.replace(/^.*[\\/]/, '');
     h2.textContent = title;
     div.appendChild(h2);
     // image
+    let container = document.createElement("div");
+    container.classList.add("image-container");
+    div.appendChild(container);
     let img = document.createElement("img");
     img.src = artwork.path;
-    div.appendChild(img);
+    container.appendChild(img);
+    // desc
     let desc = document.createElement("div");
     desc.classList.add("desc");
     div.appendChild(desc);
     // artist
     let p = document.createElement("p");
-    p.textContent = `By ${artwork.artist}, ${artwork.year}`;
+    p.textContent = `By ${artwork.artist}, ${unixToDate(Date.parse(artwork.date))}`;
     desc.appendChild(p);
     // tags
     let tags = document.createElement("p");
+    tags.classList.add("tags");
     let text = `Tags: ${artwork.tags[0]}`;
     for (let i = 1; i < artwork.tags.length; i++) {
         text += ", " + artwork.tags[i];
@@ -73,4 +80,15 @@ window.onscroll = function () {
     if (window.innerHeight + window.scrollY + 400 >= document.body.offsetHeight) {
         loadMore(9);
     }
+}
+
+// thank you internet
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function unixToDate(UNIX_timestamp) {
+    let timestamp = new Date(UNIX_timestamp);
+    let year = timestamp.getFullYear();
+    let month = months[timestamp.getMonth()];
+    let date = timestamp.getDate();
+    let time = month + ' ' + date + ', ' + year;
+    return time;
 }
