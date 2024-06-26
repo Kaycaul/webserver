@@ -47,7 +47,12 @@ app.get("/gallery", async (req, res) => {
 	if (req.accepts("text/html")) {
 		res.sendFile(path.join(__dirname, "../public/gallery.html"));
 	} else if (req.accepts("application/json")) {
-		// parse query params
+		// calculate page
+		let page = 0;
+		const pagesize = 9;
+		if (req.query.page) page = parseInt(req.query.page);
+		if (!page || page < 0) page = 0;
+		// build query
 		let dbQuery = {};
 		if (req.query.search) {
 			// search with OR using the search term
@@ -61,16 +66,11 @@ app.get("/gallery", async (req, res) => {
 					{ tags: { $elemMatch: { $regex: `.*${req.query.search}.*`, $options: "i" } } }
 				]
 			};
-		} else {
-			// search with AND using each search term
-			if (req.query.artist) dbQuery.artist = { $regex: `.*${req.query.artist}.*`, $options: "i" };
-			if (req.query.title) dbQuery.path = { $regex: `(\/.+)+\/.*${req.query.title}.*`, $options: "i" }; // magic fucking spell
-			if (req.query.tags) dbQuery.tags = { $all: req.query.tags.split(" ") };
 		}
-		let page = 0;
-		const pagesize = 9;
-		if (req.query.page) page = parseInt(req.query.page);
-		if (!page || page < 0) page = 0;
+		// search with AND using each search term
+		if (req.query.artist) dbQuery.artist = { $regex: `.*${req.query.artist}.*`, $options: "i" };
+		if (req.query.title) dbQuery.path = { $regex: `(\/.+)+\/.*${req.query.title}.*`, $options: "i" }; // magic fucking spell
+		if (req.query.tags) dbQuery.tags = { $all: req.query.tags.split(" ") };
 		// get all artwork ids
 		let list = await artworksCollection.find(dbQuery).toArray();
 		// break if no results

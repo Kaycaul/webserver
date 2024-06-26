@@ -1,11 +1,13 @@
+// i hate this entire script and its very confusing but it works
 const main = document.querySelector("main");
 let artworkIDs = [];
 let currentArtwork = 0;
 let page = 0;
-let stopped = false;
-let waiting = false;
+let stopped = false; // true when server reaches final page (404)
+let waiting = false; // true while requesting more ids from server
+let loading = 0; // greater than 0 while loading artwork
 
-// load the first 9
+// load the first few
 requestMore(9);
 
 function requestMore(amount) {
@@ -18,6 +20,8 @@ function requestMore(amount) {
     galleryIDsRequest.open("GET", `gallery/${window.location.search}${pageQueryString}`, true);
     galleryIDsRequest.setRequestHeader("Accept", "application/json");
     galleryIDsRequest.onreadystatechange = function () {
+        // unlock
+        waiting = false;
         if (this.readyState == 4 && this.status == 200) {
             let ids = JSON.parse(this.responseText);
             // append to list
@@ -28,8 +32,6 @@ function requestMore(amount) {
             // no more artwork
             stopped = true;
         }
-        // unlock
-        waiting = false;
     }
     galleryIDsRequest.send();
 }
@@ -44,6 +46,7 @@ function loadMore(amount) {
 }
 
 function addArtwork(id) {
+    loading++;
     // insert the card first, while we wait for the artwork object
     let div = document.createElement("div");
     div.classList.add("artwork-card");
@@ -93,10 +96,14 @@ function addArtworkElement(artwork, div) {
     }
     tags.innerHTML = html;
     desc.appendChild(tags);
+    loading--;
+    // get more if they dont fill the screen
+    checkLoadMore();
 }
 
 // load more on scroll
-window.onscroll = function () {
+window.onscroll = checkLoadMore;
+function checkLoadMore() {
     if (stopped || waiting) return;
     if (window.innerHeight + window.scrollY + 400 >= document.body.offsetHeight) {
         requestMore(9);

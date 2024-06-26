@@ -30,7 +30,7 @@ async function main() {
             date: new Date()
         });
         // infestation
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 30; i++) {
             await artworks.insertOne({
                 path: "/assets/sneakers.png",
                 artist: `Doeball${i}`,
