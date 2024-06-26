@@ -49,9 +49,24 @@ app.get("/gallery", async (req, res) => {
 	} else if (req.accepts("application/json")) {
 		// parse query params
 		let dbQuery = {};
-		if (req.query.artist) dbQuery.artist = req.query.artist;
-		if (req.query.title) dbQuery.path = {$regex: `(\/.+)+\/.*${req.query.title}.*`, $options: "i"}; // magic fucking spell
-		if (req.query.tags) dbQuery.tags = {$all: req.query.tags.split(" ")};
+		if (req.query.search) {
+			// search with OR using the search term
+			dbQuery = {
+				$or: [
+					// check if artist has term
+					{ artist: { $regex: `.*${req.query.search}.*`, $options: "i" } },
+					// check if filename has term
+					{ path: { $regex: `(\/.+)+\/.*${req.query.search}.*`, $options: "i" } },
+					// check if tags have term
+					{ tags: { $elemMatch: { $regex: `.*${req.query.search}.*`, $options: "i" } } }
+				]
+			};
+		} else {
+			// search with AND using each search term
+			if (req.query.artist) dbQuery.artist = { $regex: `.*${req.query.artist}.*`, $options: "i" };
+			if (req.query.title) dbQuery.path = { $regex: `(\/.+)+\/.*${req.query.title}.*`, $options: "i" }; // magic fucking spell
+			if (req.query.tags) dbQuery.tags = { $all: req.query.tags.split(" ") };
+		}
 		let page = 0;
 		const pagesize = 9;
 		if (req.query.page) page = parseInt(req.query.page);
@@ -91,7 +106,7 @@ app.get("/gallery/:id", async (req, res) => {
 // send public files
 app.use(express.static(path.join(__dirname, "../public"), {
 	// add headers for unity gzip
-	setHeaders: function(res, path) {
+	setHeaders: function (res, path) {
 		if (path.endsWith(".gz")) {
 			res.set("Content-Encoding", "gzip");
 		}

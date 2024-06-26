@@ -33,7 +33,7 @@ async function main() {
         for (let i = 0; i < 20; i++) {
             await artworks.insertOne({
                 path: "/assets/sneakers.png",
-                artist: `Doeball #${i}`,
+                artist: `Doeball${i}`,
                 tags: ["sneaks", "sneaks-game", "liquid-skies"],
                 date: new Date()
             });

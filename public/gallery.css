@@ -102,6 +102,54 @@ p {
     filter: saturate(5) contrast(5);
 }
 
+nav {
+    font-size: var(--font-size);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(91, 71, 94, 0.226);
+    padding: 0.5em;
+}
+
+nav img {
+    width: 3em;
+    border: 1px solid rgba(231, 181, 248, 0.534);
+    border-radius: var(--border-radius);
+}
+
+nav form#search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+
+nav form#search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 100%;
+    width: auto;
+}
+
+form#search ::placeholder {
+    opacity: 0.5;
+    color: var(--text-dark);
+}
+
+form#search input#searchbar {
+    color: var(--text-dark);
+    padding: 0.25em 0.5em;
+    font-size: var(--font-size);
+    border: 1px solid rgba(231, 181, 248, 0.534);
+    border-radius: var(--border-radius);
+    background-color: rgba(112, 78, 137, 0.262);
+    font-style: italic;
+} 
+
 @media screen and (min-width: 600px) {
     :root {
         --font-size: 1rem;
