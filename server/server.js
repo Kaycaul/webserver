@@ -80,7 +80,7 @@ app.get("/gallery", async (req, res) => {
 		}
 		// sort by date
 		list = list.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-		list.reverse(); // newest first
+		// list.reverse(); // newest first // no?? thats not what this does
 		// paginate
 		list = list.slice(page * pagesize, (page + 1) * pagesize);
 		// map to ids
