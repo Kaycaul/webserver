@@ -34,10 +34,6 @@ p {
     color: var(--text-light);
 }
 
-#title {
-    margin-top: 1rem;
-}
-
 #gallery {
     margin: 1rem 0;
     padding: 0 1rem;
@@ -148,7 +144,24 @@ form#search input#searchbar {
     border-radius: var(--border-radius);
     background-color: rgba(112, 78, 137, 0.262);
     font-style: italic;
-} 
+}
+
+nav #title-area {
+    font-size: calc(var(--font-size) * 1.7);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+nav #title-area a {
+    width: 3em;
+}
+
+nav #title-area #title {
+    font-size: inherit;
+    margin: 0 0.5em;
+}
 
 @media screen and (min-width: 600px) {
     :root {

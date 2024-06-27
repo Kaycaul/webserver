@@ -14,15 +14,17 @@
 
 <body class="glow-js">
     <nav>
-        <a href="/"><img src="/assets/happydoeball.png" alt="home"></a>
+        <div id="title-area">
+            <a href="/"><img src="/assets/happydoeball.png" alt="home"></a>
+            <h1 id="title">Doeball's Gallery</h1>
+        </div>
         <form id="search" action="/gallery">
             <button action="submit">🔎</button>
             <input type="text" id="searchbar" placeholder="Search" name="search">
         </form>
     </nav>
-    <h1 id="title">A bunch of cool pictures</h1>
     <main id="gallery">
-
+        <!-- injected by javascript -->
     </main>
 </body>
 
