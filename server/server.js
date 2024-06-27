@@ -4,6 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const path = require("path");
+const fs = require("fs");
 const port = 2763;
 
 // connect to database
@@ -117,6 +118,33 @@ app.put("/boops", async (req, res) => {
 	boops = boops ? boops.boops : 0;
 	await miscCollection.updateOne({ "boops": { $exists: true } }, { $set: { "boops": boops + 1 } });
 	res.sendStatus(204);
+});
+
+// optimize pngs if requested
+app.get("*.png", (req, res, next) => {
+	if (req.query.optimize === undefined) return next();
+	// generate the image if needed
+	let newFilename = req.path.replace(/\.png$/, "-optimized.jpg");
+	// redirect if the image already exists
+	if (fs.existsSync(path.join(__dirname, "../public", newFilename))) {
+		console.log(`	🚀 Found optimized image`);
+		res.redirect(newFilename);
+		return;
+	}
+	console.log(`	🏭 Creating optimized image`);
+	sharp(path.join(__dirname, "../public", req.path))
+		.jpeg({
+			quality: 90,
+			progressive: true
+		})
+		.toFile(path.join(__dirname, "../public", newFilename))
+		.then(() => {
+			// redirect to the image
+			res.redirect(newFilename);
+		})
+		.catch((reason) => {
+			console.log(reason);
+		});
 });
 
 // send public files

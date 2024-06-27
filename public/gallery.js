@@ -76,7 +76,7 @@ function addArtworkElement(artwork, div) {
     container.classList.add("image-container");
     div.appendChild(container);
     let img = document.createElement("img");
-    img.src = artwork.path;
+    img.src = artwork.path + "?optimize";
     container.appendChild(img);
     // desc
     let desc = document.createElement("div");
