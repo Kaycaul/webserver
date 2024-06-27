@@ -1,3 +1,4 @@
+const sharp = require("sharp");
 const mongodb = require("mongodb");
 const express = require("express");
 const morgan = require("morgan");
@@ -103,22 +104,6 @@ app.get("/gallery/:id", async (req, res) => {
 	res.send(artworkjson);
 });
 
-// send public files
-app.use(express.static(path.join(__dirname, "../public"), {
-	// add headers for unity gzip
-	setHeaders: function (res, path) {
-		if (path.endsWith(".gz")) {
-			res.set("Content-Encoding", "gzip");
-		}
-		if (path.endsWith(".wasm.gz") || path.endsWith(".wasm")) {
-			res.set("Content-Type", "application/wasm");
-		}
-		if (path.endsWith(".pck.gz") || path.endsWith(".pck")) {
-			res.set("Content-Type", "application/octet-stream");
-		}
-	}
-}));
-
 // get the number of boops
 app.get("/boops", async (req, res) => {
 	let boops = await miscCollection.findOne({ "boops": { $exists: true } });
@@ -133,6 +118,22 @@ app.put("/boops", async (req, res) => {
 	await miscCollection.updateOne({ "boops": { $exists: true } }, { $set: { "boops": boops + 1 } });
 	res.sendStatus(204);
 });
+
+// send public files
+app.use(express.static(path.join(__dirname, "../public"), {
+	setHeaders: function (res, path) {
+		// add headers for unity gzip
+		if (path.endsWith(".gz")) {
+			res.set("Content-Encoding", "gzip");
+		}
+		if (path.endsWith(".wasm.gz") || path.endsWith(".wasm")) {
+			res.set("Content-Type", "application/wasm");
+		}
+		if (path.endsWith(".pck.gz") || path.endsWith(".pck")) {
+			res.set("Content-Type", "application/octet-stream");
+		}
+	}
+}));
 
 // finally, send 404s
 app.use((req, res) => {
