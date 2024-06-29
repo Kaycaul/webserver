@@ -72,7 +72,7 @@ function addArtwork(id) {
         if (this.readyState == 4 && this.status == 200) {
             let artwork = JSON.parse(this.responseText);
             // add the details of the artwork object to the card
-            addArtworkElement(artwork, div);
+            addArtworkElement(artwork, div, id);
         }
     }
     xhttp.open("GET", `/gallery/${id}`, true);
@@ -80,7 +80,7 @@ function addArtwork(id) {
     xhttp.send();
 }
 
-function addArtworkElement(artwork, div) {
+function addArtworkElement(artwork, div, id) {
     // title
     let h2 = document.createElement("h2");
     let title = artwork.path.replace(/^.*[\\/]/, '');
@@ -111,6 +111,11 @@ function addArtworkElement(artwork, div) {
     }
     tags.innerHTML = html;
     desc.appendChild(tags);
+    // id
+    let mongoId = document.createElement("p");
+    mongoId.classList.add("mongo-id");
+    mongoId.innerHTML = `ID: ${id}`;
+    desc.appendChild(mongoId);
     loading--;
     results++;
     // get more if they dont fill the screen
