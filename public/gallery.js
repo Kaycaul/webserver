@@ -116,6 +116,15 @@ function addArtworkElement(artwork, div, id) {
     mongoId.classList.add("mongo-id");
     mongoId.innerHTML = `ID: ${id}`;
     desc.appendChild(mongoId);
+    // set grid span for wide images
+    img.onload = () => {
+        let ratio = img.width / img.height;
+        if (ratio > 1.3) {
+            img.classList.add("wide-image");
+        } else if (ratio < 0.35) {
+            img.classList.add("tall-image");
+        }
+    }
     loading--;
     results++;
     // get more if they dont fill the screen
@@ -131,17 +140,6 @@ function checkLoadMore() {
     }
 }
 
-// thank you internet
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-function unixToDate(UNIX_timestamp) {
-    let timestamp = new Date(UNIX_timestamp);
-    let year = timestamp.getFullYear();
-    let month = months[timestamp.getMonth()];
-    let date = timestamp.getDate();
-    let time = month + ' ' + date + ', ' + year;
-    return time;
-}
-
 // put the search term into the search terms header
 if (query.search || query.artist || query.tags) {
     let text = "Search results for: ";
@@ -151,4 +149,15 @@ if (query.search || query.artist || query.tags) {
     if (query.tags) text += ", with tags: " + query.tags.replaceAll("+", ", ");
     document.getElementById("search-terms").innerText += text;
     document.getElementById("search-terms-container").hidden = false;
+}
+
+// thank you internet
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function unixToDate(UNIX_timestamp) {
+    let timestamp = new Date(UNIX_timestamp);
+    let year = timestamp.getFullYear();
+    let month = months[timestamp.getMonth()];
+    let date = timestamp.getDate();
+    let time = month + ' ' + date + ', ' + year;
+    return time;
 }

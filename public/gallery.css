@@ -39,6 +39,7 @@ p {
     padding: 0 1rem;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    grid-auto-flow: dense;
     width: 100%;
     gap: 0.5rem;
 }
@@ -192,15 +193,23 @@ nav #title-area #title {
     margin-top: 1rem;
 }
 
+.artwork-card:has(.tall-image) {
+    grid-row: span 2;
+}
+
 @media screen and (min-width: 600px) {
     :root {
         --font-size: 1rem;
         --border-radius: 5px;
     }
-
+    
     #gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
+    }
+    
+    .artwork-card:has(.wide-image) {
+        grid-column: span 2;
     }
 }
 
