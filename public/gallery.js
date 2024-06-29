@@ -45,6 +45,7 @@ function requestMore(amount) {
         if (this.readyState == 4 && this.status == 404) {
             // no more artwork
             stopped = true;
+            element("loading").classList.add("hidden");
             if (results == 0) {
                 element("no-results-container").hidden = false;
             }

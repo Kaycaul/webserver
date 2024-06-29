@@ -10,6 +10,10 @@ img {
     height: auto;
 }
 
+.hidden {
+    display: none !important;
+}
+
 :root {
     --text-light: rgb(225, 151, 250);
     --text-dark: rgb(124, 113, 169);
