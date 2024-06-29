@@ -89,12 +89,16 @@ p {
     color: var(--text-dark);
 }
 
-.desc a {
+.desc a,
+#clear-search {
     color: inherit;
     filter: saturate(2) contrast(2);
 }
 
-.desc a:hover, .desc a:focus-within {
+.desc a:hover,
+.desc a:focus-within,
+#clear-search:hover,
+#clear-search:focus-within {
     filter: saturate(5) contrast(5);
 }
 
@@ -161,6 +165,12 @@ nav #title-area a {
 nav #title-area #title {
     font-size: inherit;
     margin: 0 0.5em;
+}
+
+#search-terms-container,
+#no-results-container {
+    color: var(--text-light);
+    margin-top: 1rem;
 }
 
 @media screen and (min-width: 600px) {

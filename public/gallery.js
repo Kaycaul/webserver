@@ -6,6 +6,18 @@ let page = 0;
 let stopped = false; // true when server reaches final page (404)
 let waiting = false; // true while requesting more ids from server
 let loading = 0; // greater than 0 while loading artwork
+let results = 0; // current results on page
+
+let queryString = window.location.search;
+let query = {};
+if (queryString) {
+    queryString = queryString.substring(1); // remove ?
+    let queryList = queryString.split("&");
+    for (let i = 0; i < queryList.length; i++) {
+        let pair = queryList[i].split("=");
+        query[pair[0]] = pair[1];
+    }
+}
 
 // load the first few
 requestMore(9);
@@ -31,6 +43,9 @@ function requestMore(amount) {
         if (this.readyState == 4 && this.status == 404) {
             // no more artwork
             stopped = true;
+            if (results == 0) {
+                document.getElementById("no-results-container").hidden = false;
+            }
         }
     }
     galleryIDsRequest.send();
@@ -97,6 +112,7 @@ function addArtworkElement(artwork, div) {
     tags.innerHTML = html;
     desc.appendChild(tags);
     loading--;
+    results++;
     // get more if they dont fill the screen
     checkLoadMore();
 }
@@ -119,4 +135,15 @@ function unixToDate(UNIX_timestamp) {
     let date = timestamp.getDate();
     let time = month + ' ' + date + ', ' + year;
     return time;
+}
+
+// put the search term into the search terms header
+if (query.search || query.artist || query.tags) {
+    let text = "Search results for: ";
+    text += query.search ?? "anything";
+    text += ", by "
+    text += query.artist ?? "anyone";
+    if (query.tags) text += ", with tags: " + query.tags.replaceAll("+", ", ");
+    document.getElementById("search-terms").innerText += text;
+    document.getElementById("search-terms-container").hidden = false;
 }
