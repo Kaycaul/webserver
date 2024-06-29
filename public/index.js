@@ -100,3 +100,8 @@ function games() {
 element("games-link-button").addEventListener("click", function () {
     window.location.href = "/games";
 });
+
+// link to the gallery page
+element("gallery-link-button").addEventListener("click", function () {
+    window.location.href = "/gallery";
+});

@@ -241,7 +241,7 @@ p {
     height: 0;
     padding-bottom: 40%;
     /* i hate this language */
-    background-image: url("assets/bloo_headshot.png");
+    background-image: url("assets/bloo_headshot.png?optimize");
     --zoom: 110%;
 }
 
@@ -249,7 +249,7 @@ p {
     width: 80%;
     height: 0;
     padding-bottom: 80%;
-    background-image: url("assets/andromeda_half.png");
+    background-image: url("assets/andromeda_half.png?optimize");
     --zoom: 135%;
 }
 
@@ -257,7 +257,7 @@ p {
     width: 95%;
     height: 0;
     padding-bottom: 95%;
-    background-image: url("assets/verity_with_9_trillion_effects.png");
+    background-image: url("assets/verity_with_9_trillion_effects.png?optimize");
     --zoom: 120%;
 }
 
@@ -300,7 +300,7 @@ p {
     filter: drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
 }
 
-#gallery-icon {
+.gallery-icon {
     width: 1.3em;
     filter: drop-shadow(0 0 5px rgba(24, 10, 69, 0.451));
     transform: translateX(-0.12em);
