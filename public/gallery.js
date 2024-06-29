@@ -1,5 +1,7 @@
 // i hate this entire script and its very confusing but it works
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const main = document.querySelector("main");
+let elements = {};
 let artworkIDs = [];
 let currentArtwork = 0;
 let page = 0;
@@ -44,7 +46,7 @@ function requestMore(amount) {
             // no more artwork
             stopped = true;
             if (results == 0) {
-                document.getElementById("no-results-container").hidden = false;
+                element("no-results-container").hidden = false;
             }
         }
     }
@@ -88,10 +90,14 @@ function addArtworkElement(artwork, div, id) {
     div.appendChild(h2);
     // image
     let container = document.createElement("div");
+    container.onclick = function () {
+        enlargeImage(artwork.path, id);
+    }
     container.classList.add("image-container");
     div.appendChild(container);
     let img = document.createElement("img");
     img.src = artwork.path + "?optimize";
+    img.draggable = false;
     container.appendChild(img);
     // desc
     let desc = document.createElement("div");
@@ -149,12 +155,38 @@ if (query.search || query.artist || query.tags) {
     text += ", by "
     text += query.artist ?? "anyone";
     if (query.tags) text += ", with tags: " + query.tags.replaceAll("+", ", ");
-    document.getElementById("search-terms").innerText += text;
-    document.getElementById("search-terms-container").hidden = false;
+    element("search-terms").innerText += text;
+    element("search-terms-container").hidden = false;
+}
+
+// enlarge images
+let enlarged = false;
+document.addEventListener("keydown", (event) => {
+    if (event.key == "Escape" && enlarged) {
+        unenlarge();
+    }
+});
+element("image-view").onclick = unenlarge;
+function unenlarge() {
+    element("image-view").style.animationName = "fade-out";
+    element("enlarged-image-container").style.animationName = "shrink";
+    element("enlarged-image-container").style.animationTimingFunction = "ease-in";
+    enlarged = false;
+}
+function enlargeImage(path, id) {
+    element("enlarged-image").src = "/assets/loading.gif";
+    element("image-view").style.animationName = "fade-in";
+    element("enlarged-image-container").style.animationName = "enlarge";
+    element("enlarged-image-container").style.animationTimingFunction = "ease-out";
+    element("enlarged-image").src = path + "?optimize";
+    element("enlarged-image-link").href = path; // not optimized intentionally
+    element("enlarged-image-container").onclick = function () {
+        window.location.href = path; // not optimized intentionally
+    }
+    enlarged = true;
 }
 
 // thank you internet
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 function unixToDate(UNIX_timestamp) {
     let timestamp = new Date(UNIX_timestamp);
     let year = timestamp.getFullYear();
@@ -162,4 +194,9 @@ function unixToDate(UNIX_timestamp) {
     let date = timestamp.getDate();
     let time = month + ' ' + date + ', ' + year;
     return time;
+}
+
+function element(id) {
+    if (!elements[id]) elements[id] = document.getElementById(id);
+    return elements[id];
 }
