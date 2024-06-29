@@ -60,8 +60,11 @@ p {
     gap: 0.5rem
 }
 
-.artwork-card h2 {
+.artwork-card .art-title {
     word-break: break-word;
+    color: var(--text-light);
+    font-size: calc(var(--font-size) * 1.5);
+    font-weight: bolder;
 }
 
 .artwork-card .desc {
@@ -116,7 +119,8 @@ p {
 
 .desc a,
 #clear-search,
-#enlarged-image-link {
+#enlarged-image-link,
+.art-title {
     color: inherit;
     filter: saturate(2) contrast(2);
 }
@@ -126,7 +130,9 @@ p {
 #clear-search:hover,
 #clear-search:focus-within,
 #enlarged-image-link:hover,
-#enlarged-image-link:focus-within {
+#enlarged-image-link:focus-within,
+.art-title:hover,
+.art-title:focus-within {
     filter: saturate(5) contrast(5);
 }
 

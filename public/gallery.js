@@ -31,7 +31,7 @@ function requestMore(amount) {
     let galleryIDsRequest = new XMLHttpRequest();
     let pageQueryString = window.location.search ? "&" : "?";
     pageQueryString += "page=" + page++;
-    galleryIDsRequest.open("GET", `gallery/${window.location.search}${pageQueryString}`, true);
+    galleryIDsRequest.open("GET", `/gallery/${window.location.search}${pageQueryString}`, true);
     galleryIDsRequest.setRequestHeader("Accept", "application/json");
     galleryIDsRequest.onreadystatechange = function () {
         // unlock
@@ -85,10 +85,12 @@ function addArtwork(id) {
 
 function addArtworkElement(artwork, div, id) {
     // title
-    let h2 = document.createElement("h2");
-    let title = artwork.path.replace(/^.*[\\/]/, '');
-    h2.textContent = title;
-    div.appendChild(h2);
+    let title = document.createElement("a");
+    title.classList.add("art-title");
+    title.href = `/artwork/${id}`;
+    let titleText = artwork.path.replace(/^.*[\\/]/, '');
+    title.textContent = titleText;
+    div.appendChild(title);
     // image
     let container = document.createElement("div");
     container.onclick = function () {

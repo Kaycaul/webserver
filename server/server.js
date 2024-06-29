@@ -16,6 +16,10 @@ const artworksCollection = db.collection("artworks");
 // middleware to log all requests before doing anything
 app.use(morgan("dev"));
 
+// pug template engine
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "./views"));
+
 // send the index when requesting the root
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
@@ -95,7 +99,6 @@ app.get("/gallery", async (req, res) => {
 app.get("/gallery/:id", async (req, res) => {
 	let id = new mongodb.ObjectId(req.params.id);
 	let artworkjson = await artworksCollection.findOne({ "_id": id });
-	// remove the id
 	if (!artworkjson) {
 		res.status(404).send("Artwork not found");
 		return;
@@ -103,6 +106,21 @@ app.get("/gallery/:id", async (req, res) => {
 	delete artworkjson._id;
 	res.setHeader("Content-Type", "application/json");
 	res.send(artworkjson);
+});
+
+app.get("/artwork/:id", async (req, res) => {
+	let id = new mongodb.ObjectId(req.params.id);
+	let artworkjson = await artworksCollection.findOne({ "_id": id });
+	if (!artworkjson) {
+		res.status(404).send("Artwork not found");
+		return;
+	}
+	res.setHeader("Content-Type", "text/html");
+	res.render("artwork", {
+		title: artworkjson.path.replace(/^.*[\\/]/, ''),
+		id: artworkjson._id.toString(),
+		path: artworkjson.path
+	});
 });
 
 // get the number of boops

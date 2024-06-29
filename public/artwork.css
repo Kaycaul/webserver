@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+:root {
+    --text-light: rgb(225, 151, 250);
+    --text-dark: rgb(124, 113, 169);
+    --font-size: 0.8rem;
+    --border-radius: 4px;
+}
+
+body {
+    font-size: var(--font-size);
+    min-height: 100vh;
+    font-family: Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card {
+    border: 1px solid rgba(231, 181, 248, 0.534);
+    border-radius: var(--border-radius);
+    background-color: rgba(182, 137, 214, 0.098);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0.5rem;
+    color: var(--text-light);
+    max-width: 90vw;
+    max-height: 100vh;
+}
+
+.card #title {
+    font-size: calc(var(--font-size) * 1.5);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card #image {
+    max-width: 80vw;
+    max-height: 80vh;
+}
+
+.card a {
+    color: inherit;
+    filter: saturate(2) contrast(2);
+}
+
+.card a:hover,
+.card a:focus-within {
+    filter: saturate(5) contrast(5);
+}
+
+@media screen and (min-width: 600px) {
+    :root {
+        --font-size: 1rem;
+        --border-radius: 5px;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    :root {
+        --border-radius: 6px;
+    }
+}

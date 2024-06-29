@@ -1,2 +1,0 @@
-sc start cloudflared
-pause
