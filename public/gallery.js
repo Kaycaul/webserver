@@ -119,7 +119,9 @@ function addArtworkElement(artwork, div, id) {
     // set grid span for wide images
     img.onload = () => {
         let ratio = img.width / img.height;
-        if (ratio > 1.3) {
+        if (ratio > 2.05) {
+            img.classList.add("very-wide-image");
+        } else if (ratio > 1.57) {
             img.classList.add("wide-image");
         } else if (ratio < 0.35) {
             img.classList.add("tall-image");

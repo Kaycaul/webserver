@@ -208,7 +208,7 @@ nav #title-area #title {
         gap: 1rem;
     }
     
-    .artwork-card:has(.wide-image) {
+    .artwork-card:has(.wide-image), .artwork-card:has(.very-wide-image) {
         grid-column: span 2;
     }
 }
@@ -221,5 +221,9 @@ nav #title-area #title {
     #gallery {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 1150px;
+    }
+
+    .artwork-card:has(.very-wide-image) {
+        grid-column: span 3;
     }
 }
