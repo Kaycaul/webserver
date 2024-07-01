@@ -97,24 +97,22 @@ app.get("/gallery", async (req, res) => {
 });
 
 app.get("/gallery/:id", async (req, res) => {
+	if (!mongodb.ObjectId.isValid(req.params.id)) return send404(req, res);
 	let id = new mongodb.ObjectId(req.params.id);
 	let artworkjson = await artworksCollection.findOne({ "_id": id });
-	if (!artworkjson) {
-		res.status(404).send("Artwork not found");
-		return;
-	}
+	if (!artworkjson) return send404(req, res);
 	delete artworkjson._id;
 	res.setHeader("Content-Type", "application/json");
 	res.send(artworkjson);
 });
 
 app.get("/artwork/:id", async (req, res) => {
+	// sanitize id
+	if (!mongodb.ObjectId.isValid(req.params.id)) return send404(req, res);
 	let id = new mongodb.ObjectId(req.params.id);
+	// get document
 	let artworkjson = await artworksCollection.findOne({ "_id": id });
-	if (!artworkjson) {
-		res.status(404).send("Artwork not found");
-		return;
-	}
+	if (!artworkjson) return send404(req, res);
 	res.setHeader("Content-Type", "text/html");
 	res.render("artwork", {
 		title: artworkjson.path.replace(/^.*[\\/]/, ''),
@@ -182,14 +180,15 @@ app.use(express.static(path.join(__dirname, "../public"), {
 }));
 
 // finally, send 404s
-app.use((req, res) => {
+app.use(send404);
+function send404(req, res) {
 	// send 404 page if they want html
 	if (req.accepts("html")) {
 		res.status(404).sendFile(path.join(__dirname, "../public/404.html"));
 		return;
 	}
 	res.status(404).send("404 Not Found");
-});
+}
 
 app.listen(port, () => {
 	console.log(`Running server on http://localhost:${port} 🎉`);
