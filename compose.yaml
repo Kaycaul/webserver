@@ -4,6 +4,8 @@ services:
     restart: always
     ports:
       - "27017:27017" # doesnt actually need to be exposed, just for mongosh or whatever
+    volumes:
+      - mongo_data:/data/db
   webserver:
     build: .
     restart: always
@@ -13,9 +15,7 @@ services:
       - mongoserver
     environment:
       - MONGO_URL=mongodb://mongoserver:27017/
-    volumes:
-      - mongodb:/data/db
 
 volumes:
-  mongodb:
-    driver: local
+  mongo_data:
+    external: true
