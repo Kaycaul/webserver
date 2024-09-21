@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+build
+.git
+*.md
+.gitignore
+
+# from gitignore
+node_modules/
+db/
+public/assets/uploads/*
+*-optimized.jpg
