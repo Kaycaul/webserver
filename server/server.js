@@ -8,7 +8,7 @@ const fs = require("fs");
 const port = 2763;
 
 // connect to database
-const client = new mongodb.MongoClient("mongodb://127.0.0.1:27017");
+const client = new mongodb.MongoClient(process.env.MONGO_URL || "mongodb://127.0.0.1:27017");
 const db = client.db("website");
 const miscCollection = db.collection("misc");
 const artworksCollection = db.collection("artworks");
@@ -132,6 +132,7 @@ app.get("/boops", async (req, res) => {
 app.put("/boops", async (req, res) => {
 	let boops = await miscCollection.findOne({ "boops": { $exists: true } });
 	boops = boops ? boops.boops : 0;
+	if (!boops) await miscCollection.insertOne({ "boops": 0 });
 	await miscCollection.updateOne({ "boops": { $exists: true } }, { $set: { "boops": boops + 1 } });
 	res.sendStatus(204);
 });
