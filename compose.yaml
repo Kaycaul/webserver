@@ -5,7 +5,7 @@ services:
     ports:
       - "27017:27017" # doesnt actually need to be exposed, just for mongosh or whatever
     volumes:
-      - mongo_data:/data/db
+      - mongodb_external:/data/db
   webserver:
     build: .
     restart: always
@@ -17,5 +17,5 @@ services:
       - MONGO_URL=mongodb://mongoserver:27017/
 
 volumes:
-  mongo_data:
+  mongodb_external:
     external: true
