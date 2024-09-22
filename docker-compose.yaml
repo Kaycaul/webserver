@@ -1,0 +1,27 @@
+services:
+  mongoserver:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_external:/data/db
+  webserver:
+    build: .
+    restart: always
+    ports:
+      - 2763:2763
+    depends_on:
+      - mongoserver
+    environment:
+      - MONGO_URL=mongodb://mongoserver:27017/
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --no-autoupdate run --token ${TUNNEL_SECRET}
+    # create a .env file, with TUNNEL_SECRET=13246hj34jn4g36thkj2354gvyhjt2g45bv3htj453gvt6j34
+    network_mode: "host"
+
+volumes:
+  mongodb_external:
+    external: true
