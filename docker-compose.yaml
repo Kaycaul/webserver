@@ -15,6 +15,8 @@ services:
       - mongoserver
     environment:
       - MONGO_URL=mongodb://mongoserver:27017/
+    volumes:
+      - gallery_uploads:/doeball-ca/public/assets/uploads
   cloudflared:
     image: cloudflare/cloudflared:latest
     restart: always
@@ -24,4 +26,4 @@ services:
 
 volumes:
   mongodb_external:
-    external: true
+  gallery_uploads:
