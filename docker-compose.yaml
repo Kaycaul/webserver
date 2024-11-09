@@ -27,3 +27,4 @@ services:
 volumes:
   mongodb_external:
   gallery_uploads:
+    external: true
