@@ -6,6 +6,7 @@ services:
       - 27017:27017
     volumes:
       - mongodb_external:/data/db
+    container_name: mongoserver
   webserver:
     build: .
     restart: always
@@ -17,12 +18,14 @@ services:
       - MONGO_URL=mongodb://mongoserver:27017/
     volumes:
       - gallery_uploads:/doeball-ca/public/assets/uploads
+    container_name: webserver
   cloudflared:
     image: cloudflare/cloudflared:latest
     restart: always
     command: tunnel --no-autoupdate run --token ${TUNNEL_SECRET}
     # create a .env file, with TUNNEL_SECRET=13246hj34jn4g36thkj2354gvyhjt2g45bv3htj453gvt6j34
     network_mode: "host"
+    container_name: cloudflared
 
 volumes:
   mongodb_external:
