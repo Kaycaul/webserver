@@ -188,8 +188,15 @@ a.email {
     text-shadow: 0 0 5px rgba(193, 92, 236, 0.411)
 }
 
+#radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #radio iframe {
     width: 100%;
+    max-width: 570px;
     height: 105px;
     min-width: 0;
     border: 0;
